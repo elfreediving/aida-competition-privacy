@@ -175,9 +175,9 @@ Continued use of the App after changes means you accept the updated policy.
 
 If you have questions, concerns, or requests regarding this Privacy Policy:
 
-**Email:** [your-email@example.com]
+**Email:** [lee33179@gmail.com]
 
-**Developer:** [Your Name or Organization]
+**Developer:** [Jaehwan EL Lee]
 
 ---
 
