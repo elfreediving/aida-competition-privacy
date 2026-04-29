@@ -1,6 +1,6 @@
 # Privacy Policy
 
-**AIDA Competition**
+**Apena Comp**
 
 *Last updated: April 29, 2026*
 
