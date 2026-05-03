@@ -39,9 +39,11 @@ When events are loaded from AIDA International, the App stores:
 - **Announced Performance (AP)**
 - **Personal Best (PB)**
 - **Competition results** (RP, judge cards, penalty reasons, REMARKS)
-- **Check-in signature** (digital signature drawn by the athlete on a staff device)
+- **Check-in status** (whether the athlete checked in, and the time)
 
-This information is sourced from **AIDA International's public competition records** via their official API, except for check-in signatures which are collected directly within the App.
+This information is sourced from **AIDA International's public competition records** via their official API.
+
+**Check-in signatures are not stored.** When an athlete signs on the device screen during check-in, the drawing is shown to the staff member for visual confirmation only. As soon as the signature sheet closes, the drawing is discarded from device memory. We never write the drawing to the database, to Supabase Storage, or to the device's persistent storage. Only a boolean flag indicating that a signature was captured is recorded.
 
 ### 2.4 Information We Do NOT Collect
 
