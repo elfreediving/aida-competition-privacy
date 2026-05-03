@@ -2,7 +2,7 @@
 
 **Apnea Comp**
 
-*Last updated: April 29, 2026*
+*Last updated: May 3, 2026*
 
 ---
 
@@ -26,7 +26,7 @@ When you create an account, we collect:
 
 ### 2.2 Profile Information (Optional)
 
-- **Profile picture** — if you choose to upload one
+- **Profile picture** — if you choose to upload one. This image is visible to other members of any event you join, and is referenced in activity logs (see Section 2.5).
 
 ### 2.3 Athlete Competition Data
 
@@ -38,9 +38,10 @@ When events are loaded from AIDA International, the App stores:
 - **Discipline** (STA, DYN, CWT, etc.)
 - **Announced Performance (AP)**
 - **Personal Best (PB)**
-- **Competition results** (RP, judge cards, penalty reasons)
+- **Competition results** (RP, judge cards, penalty reasons, REMARKS)
+- **Check-in signature** (digital signature drawn by the athlete on a staff device)
 
-This information is sourced from **AIDA International's public competition records** via their official API.
+This information is sourced from **AIDA International's public competition records** via their official API, except for check-in signatures which are collected directly within the App.
 
 ### 2.4 Information We Do NOT Collect
 
@@ -57,6 +58,29 @@ We explicitly do **not** collect or store:
 - Browsing history
 - Contacts from your device
 
+### 2.5 Activity Logs
+
+To support operational transparency during competitions, the App records significant actions taken within an event:
+
+- **What we log** — judge result entries, schedule adjustments (OT delays), check-in operations, and member role changes
+- **What each log entry contains** — the user's display name, profile picture URL (if set), the action type, the affected athlete name (if applicable), and a timestamp
+- **Visibility** — log entries are visible to Organizers and Main Judges of the same event only
+- **Retention** — log entries are tied to the event and are deleted when the event is deleted
+
+Activity logs do not include any data beyond what is described above.
+
+### 2.6 Local Device Storage (Offline Buffering)
+
+To allow continued operation when internet connectivity is intermittent (common at pool and depth venues), the App may temporarily hold judge results in your device's memory before they reach our servers:
+
+- **Where** — only in the App's memory while it is running. We do not write offline data to persistent device storage.
+- **When** — automatically, when a judge save is attempted while the device is offline.
+- **How long** — until the App synchronizes the result with our servers, which happens automatically within seconds of internet returning.
+- **Visibility** — offline-buffered results are visible only on the device that created them until synchronization succeeds. Other devices in the same event do not see them.
+- **Limitations** — if the App is force-closed or the device reboots before synchronization completes, offline-buffered results are lost. The App displays an "⛔ Offline" badge on affected items and warns users not to quit the App while items are pending.
+
+This buffering does not transmit data to any third party.
+
 ---
 
 ## 3. How We Use Information
@@ -67,6 +91,7 @@ We use the collected information to:
 - Display competition schedules and athlete information to authorized event staff
 - Submit judge results back to AIDA International (when configured by the event organizer)
 - Synchronize data across devices used by event staff in real-time
+- Maintain activity logs for operational transparency within events
 - Notify users of relevant event updates within the App
 
 We do **not** use your information for advertising, marketing, or sale to third parties.
@@ -80,7 +105,7 @@ We do **not** use your information for advertising, marketing, or sale to third 
 When an event organizer configures AIDA integration with their API token:
 
 - We **read** event days, start lists, and athlete information from AIDA International
-- We **submit** judge results (athlete performance, cards, penalties) back to AIDA International
+- We **submit** judge results (athlete performance, cards, penalties, remarks) back to AIDA International
 
 This sharing is essential for the App's core function and is initiated by the event organizer.
 
@@ -88,9 +113,10 @@ This sharing is essential for the App's core function and is initiated by the ev
 
 Event participants (organizers, main judges, judges, staff) can see:
 
-- Names and roles of other participants in the same event
+- Names, profile pictures, and roles of other participants in the same event
 - Athlete information for that event
 - Real-time updates of judge results
+- Activity logs (Organizers and Main Judges only)
 
 Information is scoped to the event — users in one event cannot see data from another event they don't belong to.
 
@@ -98,9 +124,9 @@ Information is scoped to the event — users in one event cannot see data from a
 
 We use the following service providers to operate the App:
 
-- **Supabase** ([supabase.com](https://supabase.com)) — backend authentication, database, and real-time synchronization
+- **Supabase** ([supabase.com](https://supabase.com)) — backend authentication, database, real-time synchronization, and storage of profile pictures
 - **AIDA International** ([aidainternational.org](https://www.aidainternational.org)) — official source of competition data
-- **Google Play Services** — app distribution and crash reporting on Android
+- **Apple App Store** and **Google Play Services** — app distribution and crash reporting
 
 These providers process data on our behalf and are bound by their own privacy policies.
 
@@ -113,7 +139,8 @@ We may disclose information if required by law, court order, or to protect the r
 ## 5. Data Retention
 
 - **Account data** — retained while your account exists. You can request deletion at any time (see Section 8).
-- **Event data** (athletes, results, logs) — automatically deleted when the event organizer deletes the event.
+- **Event data** (athletes, results, logs, signatures) — automatically deleted when the event organizer deletes the event.
+- **Offline-buffered results** — held in device memory only; either synchronized to our servers within seconds of internet returning, or lost if the App is closed before sync.
 - **Authentication tokens** — short-lived; refreshed or expired automatically.
 
 ---
@@ -134,7 +161,7 @@ We protect your information through multiple layers of security:
 - Permissions are checked on every query, not just at login
 
 ### Role-Based Permissions
-- **Main Judge / Organizer** — can manage events, members, and competition data
+- **Main Judge / Organizer** — can manage events, members, and competition data; view activity logs
 - **Judge** — can view and submit competition results
 - **Staff** — can view event data
 - Permissions are scoped per-event; a judge in one event has no access to another
@@ -197,9 +224,9 @@ Continued use of the App after changes means you accept the updated policy.
 
 If you have questions, concerns, or requests regarding this Privacy Policy:
 
-**Email:** [lee33179@gmail.com]
+**Email:** lee33179@gmail.com
 
-**Developer:** [Jaehwan EL Lee]
+**Developer:** Apnea Comp
 
 ---
 
