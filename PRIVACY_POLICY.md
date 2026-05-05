@@ -2,13 +2,13 @@
 
 **Apnea Comp**
 
-*Last updated: May 3, 2026*
+*Last updated: May 5, 2026*
 
 ---
 
 ## 1. Introduction
 
-This Privacy Policy describes how the **Apnea Comp** mobile application ("we", "our", "the App") collects, uses, and protects information when you use our service. The App is a competition management tool designed for freediving event organizers, judges, and staff to coordinate AIDA-sanctioned competitions.
+This Privacy Policy describes how the **Apnea Comp** mobile application ("we", "our", "the App") collects, uses, and protects information when you use our service. The App is a competition management tool designed for freediving event organizers, judges, staff, and athletes participating in AIDA-sanctioned competitions.
 
 By using the App, you agree to the practices described in this policy.
 
@@ -28,9 +28,18 @@ When you create an account, we collect:
 
 - **Profile picture** — if you choose to upload one. This image is visible to other members of any event you join, and is referenced in activity logs (see Section 2.5).
 
-### 2.3 Athlete Competition Data
+### 2.3 Athlete Account Linking (For Athletes)
 
-When events are loaded from AIDA International, the App stores:
+If you sign up as an athlete to view start lists and your own results, the App stores:
+
+- **AIDA athlete UUID** — the permanent identifier from AIDA International used to match your account to your appearances in event start lists. This UUID is associated with you only after the event organizer's invite code is verified or your name is matched against an event start list and approved.
+- **Synced display name** — your first and last name as published in AIDA's start list, copied to your profile during the linking step
+
+This data is held only on your own profile to enable read-only access to events you participate in.
+
+### 2.4 Athlete Competition Data (Loaded From AIDA)
+
+When events are loaded from AIDA International by an event organizer, the App stores:
 
 - **Athlete name** (first and last)
 - **Gender**
@@ -39,28 +48,26 @@ When events are loaded from AIDA International, the App stores:
 - **Announced Performance (AP)**
 - **Personal Best (PB)**
 - **Competition results** (RP, judge cards, penalty reasons, REMARKS)
-- **Check-in status** (whether the athlete checked in, and the time)
+- **Check-in status** — a boolean flag indicating whether the athlete signed in at the event. The App displays a signature pad during check-in so the athlete can confirm presence, but **the signature image itself is never stored** — only the fact that a signature occurred.
 
-This information is sourced from **AIDA International's public competition records** via their official API.
+This information is sourced from **AIDA International's public competition records** via their official API, except for check-in status which is recorded directly within the App.
 
-**Check-in signatures are not stored.** When an athlete signs on the device screen during check-in, the drawing is shown to the staff member for visual confirmation only. As soon as the signature sheet closes, the drawing is discarded from device memory. We never write the drawing to the database, to Supabase Storage, or to the device's persistent storage. Only a boolean flag indicating that a signature was captured is recorded.
-
-### 2.4 Information We Do NOT Collect
+### 2.5 Information We Do NOT Collect
 
 We explicitly do **not** collect or store:
 
-- Athletes' email addresses
+- Athletes' email addresses (other than the athlete's own email if they have an account)
 - Athletes' phone numbers
 - Athletes' physical addresses
 - Athletes' dates of birth
 - Athletes' photos or face images
-- Athletes' AIDA UUIDs or unique identifiers
+- Check-in signature images (only a boolean flag is stored)
 - Location data of users
 - Device identifiers for tracking
 - Browsing history
 - Contacts from your device
 
-### 2.5 Activity Logs
+### 2.6 Activity Logs
 
 To support operational transparency during competitions, the App records significant actions taken within an event:
 
@@ -71,7 +78,18 @@ To support operational transparency during competitions, the App records signifi
 
 Activity logs do not include any data beyond what is described above.
 
-### 2.6 Local Device Storage (Offline Buffering)
+### 2.7 Push Notification Data
+
+To deliver event-related notifications to your device, the App stores:
+
+- **Push notification token (FCM token)** — a device-specific identifier issued by Firebase Cloud Messaging. Used solely as the destination address for notifications.
+- **Platform indicator** — "ios" or "android", to format notifications appropriately
+- **Notification preference** — your on/off setting for notifications
+- **Token timestamp** — last update time, used to detect stale tokens
+
+These values are stored in your account profile. The token is automatically cleared when notifications are disabled, the App is uninstalled, or the device's notification permission is revoked.
+
+### 2.8 Local Device Storage (Offline Buffering)
 
 To allow continued operation when internet connectivity is intermittent (common at pool and depth venues), the App may temporarily hold judge results in your device's memory before they reach our servers:
 
@@ -91,10 +109,13 @@ We use the collected information to:
 
 - Authenticate users and manage accounts
 - Display competition schedules and athlete information to authorized event staff
+- Display start lists and personal results to athletes who have linked their accounts
 - Submit judge results back to AIDA International (when configured by the event organizer)
 - Synchronize data across devices used by event staff in real-time
 - Maintain activity logs for operational transparency within events
-- Notify users of relevant event updates within the App
+- Send push notifications, including:
+  - **Manual notifications** triggered by event organizers (start list publication, unofficial results, official results)
+  - **Automatic notifications** triggered by event state (schedule changes / OT delays affecting specific athletes; check-in deadline reminders sent to athletes who have not yet checked in)
 
 We do **not** use your information for advertising, marketing, or sale to third parties.
 
@@ -120,13 +141,19 @@ Event participants (organizers, main judges, judges, staff) can see:
 - Real-time updates of judge results
 - Activity logs (Organizers and Main Judges only)
 
-Information is scoped to the event — users in one event cannot see data from another event they don't belong to.
+Athletes who have linked their account can see:
+
+- Start lists for events they appear in
+- Their own competition results
+
+Information is scoped to the event — users in one event cannot see data from another event they don't belong to. Athletes do not see other athletes' personal account information.
 
 ### 4.3 Third-Party Service Providers
 
 We use the following service providers to operate the App:
 
 - **Supabase** ([supabase.com](https://supabase.com)) — backend authentication, database, real-time synchronization, and storage of profile pictures
+- **Firebase Cloud Messaging** by Google LLC ([firebase.google.com](https://firebase.google.com)) — delivery of push notifications to mobile devices. The push token, notification title, and notification body pass through Google's infrastructure when a notification is sent. See Google's privacy policy at [firebase.google.com/support/privacy](https://firebase.google.com/support/privacy).
 - **AIDA International** ([aidainternational.org](https://www.aidainternational.org)) — official source of competition data
 - **Apple App Store** and **Google Play Services** — app distribution and crash reporting
 
@@ -141,7 +168,8 @@ We may disclose information if required by law, court order, or to protect the r
 ## 5. Data Retention
 
 - **Account data** — retained while your account exists. You can request deletion at any time (see Section 8).
-- **Event data** (athletes, results, logs, signatures) — automatically deleted when the event organizer deletes the event.
+- **Event data** (athletes, results, logs, check-in status) — automatically deleted when the event organizer deletes the event.
+- **Push notification token** — cleared automatically when you disable notifications, uninstall the App, or revoke notification permissions on your device. Tokens that fail repeatedly (e.g., the device is no longer reachable) are also cleared automatically.
 - **Offline-buffered results** — held in device memory only; either synchronized to our servers within seconds of internet returning, or lost if the App is closed before sync.
 - **Authentication tokens** — short-lived; refreshed or expired automatically.
 
@@ -163,15 +191,16 @@ We protect your information through multiple layers of security:
 - Permissions are checked on every query, not just at login
 
 ### Role-Based Permissions
-- **Main Judge / Organizer** — can manage events, members, and competition data; view activity logs
+- **Main Judge / Organizer** — can manage events, members, and competition data; view activity logs; send manual push notifications
 - **Judge** — can view and submit competition results
 - **Staff** — can view event data
+- **Athlete** — read-only access to start lists and personal competition results
 - Permissions are scoped per-event; a judge in one event has no access to another
 
 ### AIDA API Token Protection
 - AIDA API tokens (used to sync with AIDA International) are stored encrypted in the database
 - Only main_judge and organizer roles can retrieve tokens, enforced through restricted database functions
-- Other roles (judge, staff) cannot access tokens, even if they have access to other event data
+- Other roles (judge, staff, athlete) cannot access tokens, even if they have access to other event data
 - Tokens are masked in the user interface; users must explicitly choose to reveal them
 
 ### Session & Access
@@ -185,7 +214,7 @@ While we take reasonable measures to protect your information, no system is comp
 
 ## 7. Children's Privacy
 
-The App is intended for use by adult event organizers, judges, and staff. We do not knowingly collect personal information from children under 13. AIDA International's competition records may include athletes of various ages, but no contact information for any individuals (including minors) is collected through the App.
+The App is intended for use by adult event organizers, judges, staff, and athletes (typically 18 and older). We do not knowingly collect personal information from children under 13. AIDA International's competition records may include athletes of various ages, but no contact information for any individuals (including minors) is collected through the App.
 
 If you believe we have collected information from a child without parental consent, please contact us so we can delete it.
 
@@ -199,6 +228,7 @@ You have the right to:
 - **Correct** inaccurate information through the App's profile settings
 - **Delete** your account and associated data
 - **Withdraw consent** by uninstalling the App and requesting account deletion
+- **Disable notifications** through your device's system settings or the App's notification preferences. Disabling notifications immediately stops your push token from being used and clears it from our servers.
 - **Export** your data (contact us for assistance)
 
 To exercise these rights, contact us using the information in Section 11.
@@ -207,7 +237,7 @@ To exercise these rights, contact us using the information in Section 11.
 
 ## 9. International Data Transfers
 
-The App may process and store data in regions where Supabase operates (currently United States). By using the App, you consent to your data being transferred to and processed in these regions.
+The App may process and store data in regions where our service providers operate. Supabase data is currently stored in the United States. Push notifications are routed through Firebase Cloud Messaging by Google, which operates globally. By using the App, you consent to your data being transferred to and processed in these regions.
 
 ---
 
