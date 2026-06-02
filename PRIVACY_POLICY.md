@@ -228,7 +228,7 @@ We may disclose information if required by law, court order, or to protect the r
 
 - **Account data** — retained while your account exists. You can request deletion at any time (see Section 8).
 - **Event data** (athletes, results, logs, check-in status, protests) — automatically deleted when the event organizer deletes the event.
-- **Protest data** (reason, signatures, decisions) — held as part of the event and deleted together with the event when the organizer deletes it. The generated protest PDF stored in our file storage is removed when an individual protest is deleted; however, if the entire event is deleted, generated PDF copies may remain in file storage until manually removed.
+- **Protest data** (reason, signatures, decisions) — held as part of the event and deleted together with the event when the organizer deletes it. The generated protest PDF stored in our file storage is removed when an individual protest is deleted, and in all cases is **automatically deleted 30 days after it is generated**.
 - **OneSignal Subscription ID** — cleared automatically when you disable notifications, uninstall the App, or revoke notification permissions on your device. Subscriptions that fail repeatedly (e.g., the device is no longer reachable) are also cleared automatically by OneSignal.
 - **Locally stored credentials** (Remember email / Remember password) — kept on your device until you disable the option, sign out, or uninstall the App.
 - **Offline-buffered results** — held in device memory only; either synchronized to our servers within seconds of internet returning, or lost if the App is closed before sync.
