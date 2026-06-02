@@ -6,7 +6,7 @@ title: Privacy Policy
 
 **Apnea Comp**
 
-*Last updated: May 12, 2026*
+*Last updated: June 2, 2026*
 
 ---
 
@@ -42,6 +42,7 @@ If you sign up as an athlete to view start lists and your own results, the App s
 
 - **AIDA athlete UUID** — the permanent identifier from AIDA International used to match your account to your appearances in event start lists. This UUID is associated with you only after the event organizer’s invite code is verified or your name is matched against an event start list and approved.
 - **Synced display name** — your first and last name as published in AIDA’s start list, copied to your profile during the linking step
+- **AIDA search queries** — when you use the “Find me on AIDA” feature to locate your athlete profile, the name you type is sent to AIDA International’s public athlete-search service to retrieve matching profiles. Only the text you type is transmitted; no account credentials are included (see Section 4.1).
 
 
 This data is held only on your own profile to enable read-only access to events you participate in.
@@ -57,6 +58,9 @@ When events are loaded from AIDA International by an event organizer, the App st
 - **Announced Performance (AP)**
 - **Personal Best (PB)**
 - **Competition results** (RP, judge cards, penalty reasons, REMARKS)
+- **Points** — competition points calculated from the result
+- **Entry type** — whether an entry is a regular start, an *opener* (a warm-up entry excluded from rankings and not sent to AIDA), or a *re-swim* (a re-performance approved through a protest)
+- **Validity flag** — when an athlete re-swims, the original entry is marked *invalidated* so it is excluded from rankings; it still appears in Results
 - **Check-in status** — a boolean flag indicating whether the athlete signed in at the event. The App displays a signature pad during check-in so the athlete can confirm presence, but **the signature image itself is never stored** — only the fact that a signature occurred.
 
 
@@ -117,15 +121,31 @@ To allow continued operation when internet connectivity is intermittent (common 
 - **Visibility** — offline-buffered results are visible only on the device that created them until synchronization succeeds. Other devices in the same event do not see them.
 - **Limitations** — if the App is force-closed or the device reboots before synchronization completes, offline-buffered results are lost. The App displays an “⛔ Offline” badge on affected items and warns users not to quit the App while items are pending.
 
-**Login Convenience (Remember Email)**
+**Login Convenience (Remember Email / Password)**
 
-If you check the “Remember email” option on the login screen, the App saves your email address to your device’s local storage (SharedPreferences on Android, NSUserDefaults on iOS) so that it appears pre-filled on subsequent logins:
+The login screen offers two optional toggles that store credentials locally so they appear pre-filled on subsequent logins:
 
-- **What is stored** — only your email address. Passwords are never stored locally.
+- **Remember email** — if enabled, your email address is saved to your device’s standard local storage (SharedPreferences on Android, NSUserDefaults on iOS).
+- **Remember password** — if enabled, your password is saved to your device’s **secure keystore** (iOS Keychain / Android EncryptedSharedPreferences, AES-256, encrypted by the operating system). It is never stored in plain text and never transmitted to our servers or any third party. It is used only to pre-fill the login form and restore your session on the same device.
 - **Where** — only on your device. This information is not transmitted to our servers or any third party.
-- **How to remove** — uncheck “Remember email” on the next login, sign out of the App, or uninstall the App.
+- **How to remove** — uncheck the option on the next login, sign out of the App (which clears the stored credentials), or uninstall the App.
 
-Neither offline buffering nor login convenience storage transmits data to any third party.
+**Display Preferences**
+
+Your theme choice (light / dark / system) and app language are saved locally (SharedPreferences) so the App remembers them between launches. These are preference settings only and contain no personal information.
+
+Neither offline buffering, login convenience, nor display-preference storage transmits data to any third party.
+
+### 2.9 Protest Data
+
+When a protest is filed under AIDA competition rules (Rulebook 17.7), the App stores a protest record containing:
+
+- **Protest reason** — free text entered by the person who files the protest
+- **Athlete signature** and, where applicable, **Jury signature** — captured as a hand-drawn image and stored (base64-encoded) inside the protest record. Unlike the check-in signature pad, **protest signatures are retained**, because a signed protest is part of the official competition record.
+- **Generated protest form** — a PDF that embeds the reason and signatures, stored in our backend file storage (Supabase Storage)
+- **Decision and amendments** — the jury’s decision (accepted / rejected / withdrawn) and, if accepted, the amended result (card, RP, remarks)
+
+**Visibility** — protest records are visible to the event’s staff (Organizer, Main Judge, Judge) and to the athlete the protest concerns. Protest activity triggers push notifications (see Section 3).
 
 ---
 
@@ -140,9 +160,12 @@ We use the collected information to:
 - Submit judge results back to AIDA International (when configured by the event organizer)
 - Synchronize data across devices used by event staff in real-time
 - Maintain activity logs for operational transparency within events
+- Manage protests filed under AIDA competition rules, including capturing signatures and recording the jury’s decision and any amended result
+- Check a server-side minimum supported app version (a public configuration value) to prompt users to update; this check transmits no personal data
 - Send push notifications via OneSignal, including:
   * **Manual notifications** triggered by event organizers (start list publication, unofficial results, official results)
-  * **Automatic notifications** triggered by event state (schedule changes / OT delays affecting specific athletes; check-in deadline reminders sent to athletes who have not yet checked in)
+  * **Automatic notifications** triggered by event state (schedule changes / OT delays affecting specific athletes; check-in deadline reminders sent to athletes who have not yet checked in; protest activity — filed, awaiting athlete signature, decided)
+  * Notification text is localized to the recipient’s app language
 
 
 We do **not** use your information for advertising, marketing, or sale to third parties.
@@ -161,6 +184,8 @@ When an event organizer configures AIDA integration with their API token:
 
 
 This sharing is essential for the App’s core function and is initiated by the event organizer.
+
+Separately, when an athlete uses the **“Find me on AIDA”** feature, the App sends the name text you type to AIDA International’s public athlete-search service in order to retrieve matching athlete profiles. Only the search text is sent; no account credentials or other personal data are included.
 
 ### 4.2 Within Events
 
@@ -184,7 +209,7 @@ Information is scoped to the event — users in one event cannot see data from a
 
 We use the following service providers to operate the App:
 
-- **Supabase** ([supabase.com](https://supabase.com)) — backend authentication, database, real-time synchronization, and storage of profile pictures
+- **Supabase** ([supabase.com](https://supabase.com)) — backend authentication, database, real-time synchronization, and file storage (profile pictures and generated protest form PDFs)
 - **OneSignal** ([onesignal.com](https://onesignal.com)) — delivery of push notifications to mobile devices. When a notification is sent, the destination Subscription ID, the notification title, and the notification body pass through OneSignal’s infrastructure. OneSignal may also collect device-level metadata (device model, OS version, language, timezone, country, IP address) for delivery optimization. See OneSignal’s privacy policy at [onesignal.com/privacy](https://onesignal.com/privacy_policy). OneSignal in turn forwards the notification payload to platform-level push services — Apple Push Notification service (APNs) for iOS and Firebase Cloud Messaging (FCM) for Android — for final delivery to the device.
 - **AIDA International** ([aidainternational.org](https://www.aidainternational.org)) — official source of competition data
 - **Apple App Store** and **Google Play Services** — app distribution and crash reporting
@@ -202,8 +227,10 @@ We may disclose information if required by law, court order, or to protect the r
 ## 5. Data Retention
 
 - **Account data** — retained while your account exists. You can request deletion at any time (see Section 8).
-- **Event data** (athletes, results, logs, check-in status) — automatically deleted when the event organizer deletes the event.
+- **Event data** (athletes, results, logs, check-in status, protests) — automatically deleted when the event organizer deletes the event.
+- **Protest data** (reason, signatures, decisions) — held as part of the event and deleted together with the event when the organizer deletes it. The generated protest PDF stored in our file storage is removed when an individual protest is deleted; however, if the entire event is deleted, generated PDF copies may remain in file storage until manually removed.
 - **OneSignal Subscription ID** — cleared automatically when you disable notifications, uninstall the App, or revoke notification permissions on your device. Subscriptions that fail repeatedly (e.g., the device is no longer reachable) are also cleared automatically by OneSignal.
+- **Locally stored credentials** (Remember email / Remember password) — kept on your device until you disable the option, sign out, or uninstall the App.
 - **Offline-buffered results** — held in device memory only; either synchronized to our servers within seconds of internet returning, or lost if the App is closed before sync.
 - **Authentication tokens** — short-lived; refreshed or expired automatically.
 
