@@ -6,7 +6,7 @@ title: Privacy Policy
 
 **Apnea Comp**
 
-*Last updated: June 2, 2026*
+*Last updated: June 29, 2026*
 
 ---
 
@@ -73,7 +73,6 @@ We explicitly do **not** collect or store:
 - Athletes’ email addresses (other than the athlete’s own email if they have an account)
 - Athletes’ phone numbers
 - Athletes’ physical addresses
-- Athletes’ dates of birth
 - Athletes’ photos or face images
 - Check-in signature images (only a boolean flag is stored)
 - Location data of users
@@ -146,6 +145,21 @@ When a protest is filed under AIDA competition rules (Rulebook 17.7), the App st
 - **Decision and amendments** — the jury’s decision (accepted / rejected / withdrawn) and, if accepted, the amended result (card, RP, remarks)
 
 **Visibility** — protest records are visible to the event’s staff (Organizer, Main Judge, Judge) and to the athlete the protest concerns. Protest activity triggers push notifications (see Section 3).
+
+### 2.10 Document Submissions (Consent Forms & Medical Statement)
+
+When an athlete joins an event, the App may collect and store consent and eligibility documents required by the organizer:
+
+- **Competition Entry Form** — gender, date of birth, country of birth, citizenship, personal-best performances per discipline, and **health-related history you choose to declare** (last pressure injury / barotrauma date, last black-out date, last medical examination date).
+- **Image Rights Consent** and **Liability Waiver** — your name, the event name and place, the date of signing, and your hand-drawn signature.
+- **Medical Statement (optional)** — a doctor's fitness declaration containing the examination/issue date and the physician's name, phone number, and hand-drawn signature. Because it certifies your health, this is **sensitive health information**. A medical statement is valid for one year and, at your choice, is stored on your own profile so it can be reused for future events.
+- **Signatures** — athlete, witness, and physician signatures are captured as hand-drawn images and embedded into the generated forms. Unlike the check-in signature, these are **retained** as part of the consent record.
+- **Uploaded files** — if you submit a document as a photo or scan instead of filling it in the App, the image file is stored.
+- **Generated PDFs** — forms you complete in the App are rendered to PDF and stored in our backend file storage (Supabase Storage).
+
+**Visibility** — submitted event documents are visible to the event's Organizer and Main Judge for verification, who may also download them in bulk as a ZIP archive. If you declare an injury or black-out date, staff are prompted to manually verify your medical statement.
+
+**Reminders** — if mandatory documents are not submitted by the day before the event, you may receive a push notification listing the missing documents.
 
 ---
 
@@ -229,6 +243,7 @@ We may disclose information if required by law, court order, or to protect the r
 - **Account data** — retained while your account exists. You can request deletion at any time (see Section 8).
 - **Event data** (athletes, results, logs, check-in status, protests) — automatically deleted when the event organizer deletes the event.
 - **Protest data** (reason, signatures, decisions) — held as part of the event and deleted together with the event when the organizer deletes it. The generated protest PDF stored in our file storage is removed when an individual protest is deleted, and in all cases is **automatically deleted 30 days after it is generated**.
+- **Document submissions** (competition entry, image rights, liability, and event-submitted medical) — kept as part of the event and **automatically deleted 15 days after the event ends**. A medical statement you save to your own profile is retained for its one-year validity and can be withdrawn at any time.
 - **OneSignal Subscription ID** — cleared automatically when you disable notifications, uninstall the App, or revoke notification permissions on your device. Subscriptions that fail repeatedly (e.g., the device is no longer reachable) are also cleared automatically by OneSignal.
 - **Locally stored credentials** (Remember email / Remember password) — kept on your device until you disable the option, sign out, or uninstall the App.
 - **Offline-buffered results** — held in device memory only; either synchronized to our servers within seconds of internet returning, or lost if the App is closed before sync.
