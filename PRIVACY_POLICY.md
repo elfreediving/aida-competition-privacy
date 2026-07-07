@@ -6,7 +6,7 @@ title: Privacy Policy
 
 **Apnea Comp**
 
-*Last updated: June 2, 2026*
+*Last updated: July 7, 2026*
 
 ---
 
@@ -31,9 +31,12 @@ When you create an account, we collect:
 - **Password** — stored as a secure hash via our authentication provider (Supabase Auth). We never store passwords in plain text.
 
 
+**Signing in with Apple or Google.** You may sign in using your Apple or Google account instead of an email-and-password login. When you do, we receive your **name** and **email address** from Apple or Google to create or identify your account. If you use **Sign in with Apple** and choose to hide your email, Apple gives us a private relay email address instead of your real one, which we use the same way as any other email. We never receive your Apple or Google password — sign-in is handled by the provider together with our authentication provider (Supabase Auth).
+
+
 ### 2.2 Profile Information (Optional)
 
-- **Profile picture** — if you choose to upload one. This image is visible to other members of any event you join, and is referenced in activity logs (see Section 2.5).
+- **Profile picture** — if you choose to upload one. This image is visible to other members of any event you join, and is referenced in activity logs (see Section 2.6).
 
 
 ### 2.3 Athlete Account Linking (For Athletes)
@@ -73,7 +76,6 @@ We explicitly do **not** collect or store:
 - Athletes’ email addresses (other than the athlete’s own email if they have an account)
 - Athletes’ phone numbers
 - Athletes’ physical addresses
-- Athletes’ dates of birth
 - Athletes’ photos or face images
 - Check-in signature images (only a boolean flag is stored)
 - Location data of users
@@ -147,6 +149,21 @@ When a protest is filed under AIDA competition rules (Rulebook 17.7), the App st
 
 **Visibility** — protest records are visible to the event’s staff (Organizer, Main Judge, Judge) and to the athlete the protest concerns. Protest activity triggers push notifications (see Section 3).
 
+### 2.10 Document Submissions (Consent Forms & Medical Statement)
+
+When an athlete joins an event, the App may collect and store consent and eligibility documents required by the organizer:
+
+- **Competition Entry Form** — gender, date of birth, country of birth, citizenship, personal-best performances per discipline, and **health-related history you choose to declare** (last pressure injury / barotrauma date, last black-out date, last medical examination date).
+- **Image Rights Consent** and **Liability Waiver** — your name, the event name and place, the date of signing, and your hand-drawn signature.
+- **Medical Statement (optional)** — a doctor's fitness declaration containing the examination/issue date and the physician's name, phone number, and hand-drawn signature. Because it certifies your health, this is **sensitive health information**. A medical statement is valid for one year and, at your choice, is stored on your own profile so it can be reused for future events.
+- **Signatures** — athlete, witness, and physician signatures are captured as hand-drawn images and embedded into the generated forms. Unlike the check-in signature, these are **retained** as part of the consent record.
+- **Uploaded files** — if you submit a document as a photo or scan instead of filling it in the App, the image file is stored.
+- **Generated PDFs** — forms you complete in the App are rendered to PDF and stored in our backend file storage (Supabase Storage).
+
+**Visibility** — submitted event documents are visible to the event's Organizer and Main Judge for verification, who may also download them in bulk as a ZIP archive. If you declare an injury or black-out date, staff are prompted to manually verify your medical statement.
+
+**Reminders** — if mandatory documents are not submitted by the day before the event, you may receive a push notification listing the missing documents.
+
 ---
 
 
@@ -210,6 +227,8 @@ Information is scoped to the event — users in one event cannot see data from a
 We use the following service providers to operate the App:
 
 - **Supabase** ([supabase.com](https://supabase.com)) — backend authentication, database, real-time synchronization, and file storage (profile pictures and generated protest form PDFs)
+- **Apple — Sign in with Apple** — if you choose to sign in with Apple, Apple authenticates you and shares your name and email (or a private relay email) with us. See Apple's privacy policy at [apple.com/legal/privacy](https://www.apple.com/legal/privacy/).
+- **Google — Google Sign-In** — if you choose to sign in with Google, Google authenticates you and shares your name and email with us. See Google's privacy policy at [policies.google.com/privacy](https://policies.google.com/privacy)
 - **OneSignal** ([onesignal.com](https://onesignal.com)) — delivery of push notifications to mobile devices. When a notification is sent, the destination Subscription ID, the notification title, and the notification body pass through OneSignal’s infrastructure. OneSignal may also collect device-level metadata (device model, OS version, language, timezone, country, IP address) for delivery optimization. See OneSignal’s privacy policy at [onesignal.com/privacy](https://onesignal.com/privacy_policy). OneSignal in turn forwards the notification payload to platform-level push services — Apple Push Notification service (APNs) for iOS and Firebase Cloud Messaging (FCM) for Android — for final delivery to the device.
 - **AIDA International** ([aidainternational.org](https://www.aidainternational.org)) — official source of competition data
 - **Apple App Store** and **Google Play Services** — app distribution and crash reporting
@@ -221,6 +240,10 @@ These providers process data on our behalf and are bound by their own privacy po
 
 We may disclose information if required by law, court order, or to protect the rights, property, or safety of users.
 
+### 4.5 Shared Sign-In Across ELfreediving Apps
+
+Apnea Comp uses a shared sign-in system operated by ELfreediving. A single account — whether created with email/password or through Apple or Google sign-in — can be used to sign in to other ELfreediving apps. For sign-in purposes, your **account credentials and basic profile** (email, display name, and profile picture) are shared across these apps. Your **Apnea Comp competition data** (events, start lists, results, documents, and protests) is scoped to Apnea Comp and is **not** shared with other apps.
+
 ---
 
 
@@ -229,6 +252,7 @@ We may disclose information if required by law, court order, or to protect the r
 - **Account data** — retained while your account exists. You can request deletion at any time (see Section 8).
 - **Event data** (athletes, results, logs, check-in status, protests) — automatically deleted when the event organizer deletes the event.
 - **Protest data** (reason, signatures, decisions) — held as part of the event and deleted together with the event when the organizer deletes it. The generated protest PDF stored in our file storage is removed when an individual protest is deleted, and in all cases is **automatically deleted 30 days after it is generated**.
+- **Document submissions** (competition entry, image rights, liability, and event-submitted medical) — kept as part of the event and **automatically deleted 15 days after the event ends**. A medical statement you save to your own profile is retained for its one-year validity and can be withdrawn at any time.
 - **OneSignal Subscription ID** — cleared automatically when you disable notifications, uninstall the App, or revoke notification permissions on your device. Subscriptions that fail repeatedly (e.g., the device is no longer reachable) are also cleared automatically by OneSignal.
 - **Locally stored credentials** (Remember email / Remember password) — kept on your device until you disable the option, sign out, or uninstall the App.
 - **Offline-buffered results** — held in device memory only; either synchronized to our servers within seconds of internet returning, or lost if the App is closed before sync.
@@ -313,7 +337,7 @@ To exercise these rights, contact us using the information in Section 11.
 
 ## 9. International Data Transfers
 
-The App may process and store data in regions where our service providers operate. Supabase data is currently stored in the United States. Push notifications are routed through OneSignal, which operates globally and may process notification metadata in the United States and other regions where their infrastructure is located. OneSignal in turn forwards notifications through Apple Push Notification service (APNs) and Firebase Cloud Messaging (FCM), which also operate globally. By using the App, you consent to your data being transferred to and processed in these regions.
+The App may process and store data in regions where our service providers operate. Supabase data is stored in South Korea (Seoul region) and Japan (Tokyo region). Push notifications are routed through OneSignal, which operates globally and may process notification metadata in the United States and other regions where their infrastructure is located. OneSignal in turn forwards notifications through Apple Push Notification service (APNs) and Firebase Cloud Messaging (FCM), which also operate globally. By using the App, you consent to your data being transferred to and processed in these regions.
 
 ---
 
