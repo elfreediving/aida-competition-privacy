@@ -6,7 +6,7 @@ title: Privacy Policy
 
 **Apnea Comp**
 
-*Last updated: July 7, 2026*
+*Last updated: August 22, 2026*
 
 ---
 
@@ -232,6 +232,7 @@ We use the following service providers to operate the App:
 - **OneSignal** ([onesignal.com](https://onesignal.com)) — delivery of push notifications to mobile devices. When a notification is sent, the destination Subscription ID, the notification title, and the notification body pass through OneSignal’s infrastructure. OneSignal may also collect device-level metadata (device model, OS version, language, timezone, country, IP address) for delivery optimization. See OneSignal’s privacy policy at [onesignal.com/privacy](https://onesignal.com/privacy_policy). OneSignal in turn forwards the notification payload to platform-level push services — Apple Push Notification service (APNs) for iOS and Firebase Cloud Messaging (FCM) for Android — for final delivery to the device.
 - **AIDA International** ([aidainternational.org](https://www.aidainternational.org)) — official source of competition data
 - **Apple App Store** and **Google Play Services** — app distribution and crash reporting
+- **Sentry** ([sentry.io](https://sentry.io)) — automated error and crash diagnostics. When the App encounters a crash or an unexpected error, a diagnostic report is sent containing the type of error, the code location where it occurred, the app version and build number, the device model, and the operating system version. This reporting is deliberately configured for **data minimisation**: it does **not** send your IP address or device identifiers, does **not** capture screenshots or screen contents, does **not** include request bodies, authentication tokens, or your account information, and does **not** track usage or behaviour. Text contained in error messages is scrubbed before transmission — email addresses are masked and long encoded values (such as captured signature images) are redacted — and if that scrubbing cannot be completed the report is discarded rather than sent. Reports are used solely to find and fix defects, and are especially important for the safety-related features of the App. Sentry processes this data in the United States; see Sentry's privacy policy at [sentry.io/privacy](https://sentry.io/privacy/).
 
 
 These providers process data on our behalf and are bound by their own privacy policies.
@@ -337,7 +338,7 @@ To exercise these rights, contact us using the information in Section 11.
 
 ## 9. International Data Transfers
 
-The App may process and store data in regions where our service providers operate. Supabase data is stored in South Korea (Seoul region) and Japan (Tokyo region). Push notifications are routed through OneSignal, which operates globally and may process notification metadata in the United States and other regions where their infrastructure is located. OneSignal in turn forwards notifications through Apple Push Notification service (APNs) and Firebase Cloud Messaging (FCM), which also operate globally. By using the App, you consent to your data being transferred to and processed in these regions.
+The App may process and store data in regions where our service providers operate. Supabase data is stored in South Korea (Seoul region) and Japan (Tokyo region). Push notifications are routed through OneSignal, which operates globally and may process notification metadata in the United States and other regions where their infrastructure is located. OneSignal in turn forwards notifications through Apple Push Notification service (APNs) and Firebase Cloud Messaging (FCM), which also operate globally. Error and crash diagnostics are processed by Sentry in the United States; these reports contain no personal information (see Section 4.3). By using the App, you consent to your data being transferred to and processed in these regions.
 
 ---
 

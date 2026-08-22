@@ -6,7 +6,7 @@ title: 개인정보 처리방침
 
 **Apnea Comp**
 
-*최종 업데이트: 2026년 7월 7일*
+*최종 업데이트: 2026년 8월 22일*
 
 ---
 
@@ -232,6 +232,7 @@ AIDA 대회 규정(룰북 17.7)에 따라 이의제기가 제출되면, 본 앱�
 - **OneSignal** ([onesignal.com](https://onesignal.com)) — 모바일 기기로의 푸시 알림 전송. 알림이 발송될 때 대상 Subscription ID, 알림 제목, 알림 본문이 OneSignal 인프라를 거쳐 전달됨. OneSignal은 전송 최적화를 위해 디바이스 수준 메타데이터(디바이스 모델, OS 버전, 언어, 시간대, 국가, IP 주소)를 수집할 수 있음. OneSignal의 개인정보 처리방침: [onesignal.com/privacy](https://onesignal.com/privacy_policy). OneSignal은 다시 플랫폼별 푸시 서비스 — iOS의 Apple Push Notification service(APNs), Android의 Firebase Cloud Messaging(FCM) — 로 알림 페이로드를 전달하여 기기까지의 최종 전송을 수행함
 - **AIDA International** ([aidainternational.org](https://www.aidainternational.org)) — 공식 대회 데이터 제공원
 - **Apple App Store** 및 **Google Play Services** — 앱 배포 및 충돌 보고
+- **Sentry** ([sentry.io](https://sentry.io)) — 자동 오류·크래시 진단. 앱에서 크래시나 예기치 않은 오류가 발생하면 오류의 종류, 발생한 코드 위치, 앱 버전 및 빌드 번호, 기기 모델, 운영체제 버전이 담긴 진단 보고서가 전송됩니다. 이 리포팅은 **최소 수집 원칙**으로 설정되어 있습니다. IP 주소나 기기 식별자를 전송하지 **않으며**, 화면 캡처나 화면 내용을 수집하지 **않고**, 요청 본문·인증 토큰·계정 정보를 포함하지 **않으며**, 사용 행태를 추적하지 **않습니다**. 오류 메시지에 포함된 텍스트는 전송 전에 정제되어 이메일 주소는 마스킹되고 서명 이미지 등 긴 인코딩 값은 제거되며, 정제가 완료되지 못하면 보고서는 전송되지 않고 폐기됩니다. 보고서는 결함을 찾아 수정하는 목적으로만 사용되며, 특히 앱의 안전 관련 기능에서 중요합니다. Sentry는 미국에서 해당 데이터를 처리합니다. Sentry 개인정보처리방침: [sentry.io/privacy](https://sentry.io/privacy/).
 
 
 이들 제공자는 당사를 대신해 데이터를 처리하며 각자의 개인정보 처리방침을 따릅니다.
@@ -337,7 +338,7 @@ Apnea Comp는 ELfreediving이 운영하는 공유 로그인 시스템을 사용�
 
 ## 9. 국가 간 데이터 이전
 
-본 앱은 서비스 제공자가 운영하는 지역에서 데이터를 처리·저장할 수 있습니다. Supabase 데이터는 대한민국(서울 리전)과 일본(도쿄 리전)에 저장됩니다. 푸시 알림은 OneSignal을 통해 전송되며, OneSignal은 전 세계적으로 운영되어 미국 및 기타 인프라 위치에서 알림 메타데이터를 처리할 수 있습니다. OneSignal은 다시 알림을 Apple Push Notification service(APNs) 및 Firebase Cloud Messaging(FCM)을 통해 전달하며 이들도 전 세계적으로 운영됩니다. 본 앱을 이용함으로써 사용자의 데이터가 이러한 지역으로 전송·처리되는 것에 동의하는 것으로 간주됩니다.
+본 앱은 서비스 제공자가 운영하는 지역에서 데이터를 처리·저장할 수 있습니다. Supabase 데이터는 대한민국(서울 리전)과 일본(도쿄 리전)에 저장됩니다. 푸시 알림은 OneSignal을 통해 전송되며, OneSignal은 전 세계적으로 운영되어 미국 및 기타 인프라 위치에서 알림 메타데이터를 처리할 수 있습니다. OneSignal은 다시 알림을 Apple Push Notification service(APNs) 및 Firebase Cloud Messaging(FCM)을 통해 전달하며 이들도 전 세계적으로 운영됩니다. 오류·크래시 진단은 Sentry가 미국에서 처리하며, 해당 보고서에는 개인정보가 포함되지 않습니다(4.3항 참고). 본 앱을 이용함으로써 사용자의 데이터가 이러한 지역으로 전송·처리되는 것에 동의하는 것으로 간주됩니다.
 
 ---
 

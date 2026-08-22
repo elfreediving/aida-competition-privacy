@@ -6,7 +6,7 @@ title: 隐私政策
 
 **Apnea Comp**
 
-*最后更新: 2026年7月7日*
+*最后更新: 2026年8月22日*
 
 ---
 
@@ -222,6 +222,7 @@ title: 隐私政策
 - **OneSignal** ([onesignal.com](https://onesignal.com)) — 向移动设备传递推送通知。当发送通知时，目标 Subscription ID、通知标题和通知正文会经过 OneSignal 的基础设施。OneSignal 还可能为优化传递而收集设备级元数据（设备型号、操作系统版本、语言、时区、国家/地区、IP 地址）。请参阅 OneSignal 的隐私政策：[onesignal.com/privacy](https://onesignal.com/privacy_policy)。OneSignal 随后会将通知有效负载转发至平台级推送服务 — 用于 iOS 的 Apple Push Notification service（APNs）和用于 Android 的 Firebase Cloud Messaging（FCM）— 以便最终传递到设备。
 - **AIDA International** ([aidainternational.org](https://www.aidainternational.org)) — 比赛数据的官方来源
 - **Apple App Store** 和 **Google Play Services** — 应用分发和崩溃报告
+- **Sentry** ([sentry.io](https://sentry.io)) — 自动错误与崩溃诊断。当应用发生崩溃或意外错误时，会发送包含错误类型、发生错误的代码位置、应用版本与构建号、设备型号和操作系统版本的诊断报告。此项报告按照**数据最小化**原则配置：**不**发送您的 IP 地址或设备标识符，**不**采集屏幕截图或屏幕内容，**不**包含请求正文、身份验证令牌或您的账户信息，也**不**追踪使用情况或行为。错误信息中的文本在发送前会经过清理——电子邮件地址会被遮蔽，签名图像等较长的编码值会被移除；若清理无法完成，报告将被丢弃而不发送。报告仅用于发现和修复缺陷，对应用的安全相关功能尤为重要。Sentry 在美国处理该数据；请参阅 Sentry 隐私政策：[sentry.io/privacy](https://sentry.io/privacy/)。
 
 这些提供商代表我们处理数据，并受其各自隐私政策的约束。
 
@@ -320,7 +321,7 @@ Apnea Comp 使用由 ELfreediving 运营的共享登录系统。通过电子邮�
 
 ## 9. 国际数据传输
 
-本应用可能会在我们的服务提供商运营的地区处理和存储数据。Supabase 数据存储在韩国（首尔区域）和日本（东京区域）。推送通知通过 OneSignal 路由，OneSignal 在全球运营，可能在美国及其基础设施所在的其他地区处理通知元数据。OneSignal 随后通过 Apple Push Notification service（APNs）和 Firebase Cloud Messaging（FCM）转发通知，这些服务也在全球运营。使用本应用即表示您同意将您的数据传输到这些地区并在其中处理。
+本应用可能会在我们的服务提供商运营的地区处理和存储数据。Supabase 数据存储在韩国（首尔区域）和日本（东京区域）。推送通知通过 OneSignal 路由，OneSignal 在全球运营，可能在美国及其基础设施所在的其他地区处理通知元数据。OneSignal 随后通过 Apple Push Notification service（APNs）和 Firebase Cloud Messaging（FCM）转发通知，这些服务也在全球运营。错误与崩溃诊断由 Sentry 在美国处理，相关报告不包含个人信息（参见第 4.3 节）。使用本应用即表示您同意将您的数据传输到这些地区并在其中处理。
 
 ---
 
